@@ -1,0 +1,19 @@
+{
+  "name": "rippl",
+  "version": "1.0.0",
+  "description": "Sentiment analysis scoring application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamPupAndSuds/teamPupAndSuds.git"
+  },
+  "author": "Joey Laguna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teamPupAndSuds/teamPupAndSuds/issues"
+  },
+  "homepage": "https://github.com/teamPupAndSuds/teamPupAndSuds#readme"
+}
