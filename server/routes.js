@@ -1,10 +1,10 @@
-var controller = require('./controller');
+var controller = require('./controllers');
 
 module.exports = function(app, express) {
-  app.get('/analyze', contoller.getAnalysis);
-  app.post('/analyze', controller);
-  app.put('/analyze', controller);
-  app.delete('/analyze', controller);
+  app.get('/analyze', controller.getAnalysis);
+  // app.post('/analyze', controller);
+  // app.put('/analyze', controller);
+  // app.delete('/analyze', controller);
 
   // Handle errors or errant requests
   app.use(function(req, res) {

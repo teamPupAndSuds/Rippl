@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('chat', 'root', '');
+var db = new Sequelize('rippl', 'root', '');
 
 // we define the models we need using js
 var User = db.define('User', {
@@ -7,7 +7,7 @@ var User = db.define('User', {
 });
 
 var Score = db.define('Score', {
-  tweetText: Sequelize.STRING,
+  twitterHandle: Sequelize.STRING,
   numTweets: Sequelize.INTEGER,
   sentimentScore: Sequelize.FLOAT,
 });
