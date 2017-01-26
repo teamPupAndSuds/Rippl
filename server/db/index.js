@@ -3,7 +3,8 @@ var db = new Sequelize('rippl', 'root', '');
 
 // we define the models we need using js
 var User = db.define('User', {
-  username: Sequelize.STRING
+  username: Sequelize.STRING,
+  password: Sequelize.STRING
 });
 
 var Score = db.define('Score', {

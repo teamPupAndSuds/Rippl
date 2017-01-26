@@ -2,6 +2,11 @@ var controller = require('./controllers');
 
 module.exports = function(app, express) {
   app.get('/analyze', controller.getAnalysis);
+
+  // Testing route
+  app.get('/test', function(req, res, next) {
+    res.status(200).send('Hello old friend');
+  });
   // app.post('/analyze', controller);
   // app.put('/analyze', controller);
   // app.delete('/analyze', controller);

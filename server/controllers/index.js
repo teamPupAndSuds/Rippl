@@ -7,7 +7,7 @@ module.exports = {
       // Ping twitter API for tweets (save info in database?)
       // Run sentiment analysis via HavenOD API
     // Respond with sentiment
-    res.status(404).end();
+    res.status(200).end();
 
   }
 };
