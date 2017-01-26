@@ -1,5 +1,5 @@
-var twitter = require('./utility/util-twtr.js');
-var haven = require('./utility/util-haven.js');
+var twitter = require('../utility/util-twtr.js');
+var haven = require('../utility/util-haven.js');
 
 module.exports = {
   getAnalysis: function(req, res, next) {

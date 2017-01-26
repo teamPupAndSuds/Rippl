@@ -4,7 +4,10 @@
   "description": "Sentiment analysis scoring application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/app.js",
+    "server": "mysql.server start",
+    "login": "mysql -u root -p"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
     "express": "^4.14.0",
     "express-session": "^1.15.0",
     "morgan": "^1.7.0",
+    "mysql": "^2.13.0",
     "path": "^0.12.7",
     "request": "^2.79.0",
     "sequelize": "^3.30.0"
