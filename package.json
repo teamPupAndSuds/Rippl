@@ -8,8 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/app.js",
     "database": "mysql.server start",
-    "login": "mysql -u root -p"
-
+    "login": "mysql -u root -p",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
 
