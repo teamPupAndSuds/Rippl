@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/teamPupAndSuds/teamPupAndSuds/issues"
   },
-  "homepage": "https://github.com/teamPupAndSuds/teamPupAndSuds#readme"
+  "homepage": "https://github.com/teamPupAndSuds/teamPupAndSuds#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-session": "^1.15.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "request": "^2.79.0",
+    "sequelize": "^3.30.0"
+  }
 }
