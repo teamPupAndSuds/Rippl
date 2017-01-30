@@ -15,25 +15,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors()); // Sets headers
 
-// Router
-// var router = require('./routes.js')(app, express);
-
-
 // Set what we are listening on.
 app.set('port', 3000);
-
 
 // Set up our routes
 require('./routes.js')(app, express);
 
-
-// Serve the client files DONT THINK WE NEED THIS
-// app.use(express.static(__dirname + '/../client'));
+// Serve the client files CHANGE FILE PATH BASED ON WHAT JOEY / JEREMY ADD
+app.use(express.static(__dirname + '/../client'));
 
 // If we are being run directly, run the server.
 if (!module.parent) {
   app.listen(app.get('port'));
-  console.log('Listening on', app.get('port'));
+  console.log('Listening on port', app.get('port'));
 }
 
 module.exports.app = app;
