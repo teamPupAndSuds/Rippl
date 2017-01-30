@@ -11,13 +11,25 @@ var twitter = new twitterAPI({
   callback: 'http://127.0.0.1:3000/oauth'
 });
 
+// Promisify twitter-npm module functions for asynchronous use
+  // When multiargs === true must use spread function to receive multiple responses
 var twtrGetReqTokenAsync = Promise.promisify(twitter.getRequestToken, {context: twitter, multiArgs: true});
 var twtrGetAccessTokenAsync = Promise.promisify(twitter.getAccessToken, {context: twitter, multiArgs: true});
 var twtrVerifyCredentialsAsync = Promise.promisify(twitter.verifyCredentials, {context: twitter, multiArgs: true});
+var twtrGetTimelineAsync = Promise.promisify(twitter.getTimeline, {context: twitter, multiArgs: true});
 
 module.exports = {
-  getTweets: function(username) {
-    
+  getTweets: function(username, callback) {
+    let accessToken = twitter.accessToken;
+    let accessTokenSecret = twitter.accessTokenSecret;
+    twtrGetTimelineAsync('user', {'screen_name': username, count: 5}, accessToken, accessTokenSecret)
+    .spread((data, response) => {
+      callback(null, data, response);
+    })
+    .catch((err) => {
+      console.error('Timeline retrieval error ', err);
+      callback(err);
+    });
     
   },
 
@@ -25,13 +37,15 @@ module.exports = {
 
     twtrGetReqTokenAsync()
     .spread((requestToken, requestTokenSecret, results) => {
+      // Save down request token / secret onto twitter object
+        // In future would save down information within AuthO session if possible
       twitter['requestToken'] = requestToken;
       twitter['requestTokenSecret'] = requestTokenSecret;
+      // Helper function from module to string together url we should redirect to in  order to receive verifier
       let url = twitter.getAuthUrl(requestToken);
       console.log('URL', url);
-      // return axios.get(url).then((resp) => {
-
-      // });
+      // Redirecting to url above will ping twitter for a verifier, which will be sent to the callback
+      // above as part of the querystring
       res.redirect(url);
     })
     .then((response) => {
@@ -45,20 +59,27 @@ module.exports = {
   },
 
   getAccessToken: function(req, res, oAuthVerifier) {
-    
+    // user oAuthVerifier from querystring to get access tokens
+    let requestToken = twitter.requestToken;
+    let requestTokenSecret = twitter.requestTokenSecret;
+
     twtrGetAccessTokenAsync(requestToken, requestTokenSecret, oAuthVerifier)
     .spread((accessToken, accessTokenSecret, results) => {
-      console.log(accessToken);
-      console.log(accessTokenSecret);
-      console.log(results);
+      // Save access tokens to twitter object
+        // Would save these to session in future scenarios if possible
+      twitter['accessToken'] = accessToken;
+      twitter['accessTokenSecret'] = accessTokenSecret;
+      // Verify twitter credentials have been accepted
       return twtrVerifyCredentialsAsync(accessToken, accessTokenSecret, results);
     })
     .spread((data, response) => {
-      console.log(data['screen_name']);
+      // Check screen name of verified user
+      console.log('SCREEN NAME: ', data['screen_name']);
+      res.status(200).json(data);
     })
     .catch((err) => {
       console.error('twitter request token error', err);
-      return err;
+      res.status(404).end('Failed authentication');
     });
   }
 };

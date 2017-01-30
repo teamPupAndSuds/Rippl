@@ -21,8 +21,8 @@ app.set('port', 3000);
 // Set up our routes
 require('./routes.js')(app, express);
 
-// Serve the client files DONT THINK WE NEED THIS
-// app.use(express.static(__dirname + '/../client'));
+// Serve the client files CHANGE FILE PATH BASED ON WHAT JOEY / JEREMY ADD
+app.use(express.static(__dirname + '/../client'));
 
 // If we are being run directly, run the server.
 if (!module.parent) {
