@@ -4,15 +4,11 @@
   "description": "Sentiment analysis scoring application",
   "main": "index.js",
   "scripts": {
-
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server": "nodemon server/app.js",
     "database": "mysql.server start",
     "login": "mysql -u root -p",
-
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
-
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "repository": {
     "type": "git",
@@ -25,17 +21,19 @@
   },
   "homepage": "https://github.com/teamPupAndSuds/teamPupAndSuds#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "body-parser": "^1.16.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
     "express-session": "^1.15.0",
     "morgan": "^1.7.0",
     "mysql": "^2.13.0",
+    "node-twitter-api": "^1.8.0",
     "path": "^0.12.7",
-    "request": "^2.79.0",
-    "sequelize": "^3.30.0",
     "react": "~15.4.0-rc.4",
-    "react-native": "0.40.0"
+    "react-native": "0.40.0",
+    "request": "^2.79.0",
+    "sequelize": "^3.30.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
