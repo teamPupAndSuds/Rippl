@@ -2,6 +2,8 @@ var controller = require('./controllers');
 
 module.exports = function(app, express) {
   app.get('/analyze', controller.getAnalysis);
+  app.get('/verify', controller.getRequestToken);
+  app.get('/oauth', controller.getAccessToken);
 
   // Testing route
   app.get('/test', function(req, res, next) {
