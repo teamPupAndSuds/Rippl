@@ -75,11 +75,11 @@ module.exports = {
     .spread((data, response) => {
       // Check screen name of verified user
       console.log('SCREEN NAME: ', data['screen_name']);
-      res.status(200).json(data);
+      res.status(200).redirect('/');
     })
     .catch((err) => {
       console.error('twitter request token error', err);
-      res.status(404).end('Failed authentication');
+      res.status(404).end();
     });
   },
 
@@ -89,6 +89,8 @@ module.exports = {
     tweetJSON.forEach((tweet) => {
       string += tweet.text + ' ';
     });
+
+    string = string.replace(/[^\x00-\x7F]/g, '');
 
     return string;
   }
