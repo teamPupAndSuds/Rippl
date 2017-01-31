@@ -14,6 +14,8 @@ module.exports = {
     .spread((data, response) => {
       let tweetString = twitterUtil.getTweetString(data);
       return Score.create({twitterHandle: twitterHandle, numTweets: data.length, tweetText: tweetString});
+      
+      // SEND INFO TO HAVEN API
       // res.status(200).json(data);
     })
     .then((newScore) => {
