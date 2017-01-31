@@ -5,6 +5,11 @@ module.exports = function(app, express) {
   app.get('/verify', controller.getRequestToken);
   app.get('/oauth', controller.getAccessToken);
 
+  app.get('/login', function(req, res){
+    console.log('here');
+    res.status(200).end();
+  });
+
   // app.post('/analyze', controller);
   // app.put('/analyze', controller);
   // app.delete('/analyze', controller);
