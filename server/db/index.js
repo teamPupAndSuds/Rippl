@@ -10,6 +10,7 @@ var User = db.define('User', {
 var Score = db.define('Score', {
   twitterHandle: Sequelize.STRING,
   numTweets: Sequelize.INTEGER,
+  tweetText: Sequelize.TEXT,
   sentimentScore: Sequelize.FLOAT,
 });
 
@@ -27,5 +28,5 @@ Score.sync();
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and Score tables and make new ones.
 
-exports.User = User;
-exports.Score = Score;
+module.exports.User = User;
+module.exports.Score = Score;
