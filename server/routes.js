@@ -5,7 +5,7 @@ module.exports = function(app, express) {
   app.get('/verify', controller.getRequestToken);
   app.get('/oauth', controller.getAccessToken);
 
-  app.get('/login', function(req, res){
+  app.get('/login', function(req, res) {
     console.log('here');
     res.status(200).end();
   });

@@ -9,7 +9,7 @@ var getTweetsAsync = Promise.promisify(twitterUtil.getTweets, {context: twitterU
 module.exports = {
   getAnalysis: function(req, res, next) {
     // Using hardcoded twitter handle for testing purposes, default currently pulls 5 most recent tweets
-    let twitterHandle = 'TweetsByTutt';
+    let twitterHandle = req.query.handle || 'TweetsByTutt';
     getTweetsAsync(twitterHandle)
     .spread((data, response) => {
       let tweetString = twitterUtil.getTweetString(data);
@@ -19,8 +19,9 @@ module.exports = {
       // res.status(200).json(data);
     })
     .then((newScore) => {
-      console.log(newScore);
-      res.status(200).json(newScore);
+      // console.log(newScore);
+      console.log('New score created!');
+      res.status(200).end();
     })
     .catch((err) => {
       console.error('Analysis error ', err);
