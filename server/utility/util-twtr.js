@@ -12,7 +12,7 @@ var twitter = new twitterAPI({
 });
 
 // Promisify twitter-npm module functions for asynchronous use
-  // When multiargs === true must use spread function to receive multiple responses
+  // When multiargs === true must use spread function to rec   eive multiple responses
 var twtrGetReqTokenAsync = Promise.promisify(twitter.getRequestToken, {context: twitter, multiArgs: true});
 var twtrGetAccessTokenAsync = Promise.promisify(twitter.getAccessToken, {context: twitter, multiArgs: true});
 var twtrVerifyCredentialsAsync = Promise.promisify(twitter.verifyCredentials, {context: twitter, multiArgs: true});
@@ -81,5 +81,15 @@ module.exports = {
       console.error('twitter request token error', err);
       res.status(404).end('Failed authentication');
     });
+  },
+
+  getTweetString: function(tweetJSON) {
+    let string = '';
+    // Should we be creating an array or concatenating a string?
+    tweetJSON.forEach((tweet) => {
+      string += tweet.text + ' ';
+    });
+
+    return string;
   }
 };
