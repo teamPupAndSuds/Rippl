@@ -4,8 +4,9 @@ import AuthService from './utils/AuthService.jsx'
 import Container from './Container.jsx'
 import Home from './Home.jsx'
 import Login from './Login.jsx'
+import AuthKeys from './../../server/config/auth0config.js'
 
-const auth = new AuthService('HlE40W7Qd5ICbcHfVE6PUj11xAWGJXBR', 'rippl.auth0.com');
+const auth = new AuthService(AuthKeys['key'], AuthKeys['url']);
 
 //this will check if the user is logged in. if they aren't throw them back to login page
 const requireAuth = (nextState, replace) => {
