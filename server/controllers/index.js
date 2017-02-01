@@ -13,8 +13,10 @@ module.exports = {
     getTweetsAsync(twitterHandle)
     .spread((data, response) => {
       let tweetString = twitterUtil.getTweetString(data);
+
+      havenUtil.getSentiment(twitterHandle, tweetString);
       return Score.create({twitterHandle: twitterHandle, numTweets: data.length, tweetText: tweetString});
-      
+
       // SEND INFO TO HAVEN API
       // res.status(200).json(data);
     })

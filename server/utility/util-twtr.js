@@ -30,7 +30,7 @@ module.exports = {
       console.error('Timeline retrieval error ', err);
       callback(err);
     });
-    
+
   },
 
   getRequestToken: function(req, res) {
@@ -53,7 +53,7 @@ module.exports = {
       res.status(200).end('successful redirection');
     })
     .catch((err) => {
-      console.error('Request Token Error');
+      console.error('Request Token Error: ', err);
     });
 
   },
