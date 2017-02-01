@@ -19,7 +19,8 @@ module.exports = {
         sentimentScore: response.data.sentiment_analysis[0].aggregate.score
       }, {
         where: {
-          twitterHandle: twitterHandle
+          twitterHandle: twitterHandle,
+          tweetText: tweets
         }
       });
     })
