@@ -1,15 +1,27 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import App from './App.jsx';
 
+class Stats extends React.Component{
+  constructor(props){
+  	super(props);
+  	this.state = {
+  	  loggedIn: this.props.loggedIn
+  	}
+  }
 
-export default class stats extends Component {
+  componentDidMount(){
+  	this.setState({
+  	  loggedIn: this.props.loggedIn
+  	})
+  }
 
+  render(){
+  	console.log('INSIDE STATS ' + this.props.loggedIn)
+  	return(
+  	  <div>
+  	  	<h1>Stats</h1>
+  	    <div>{this.props.loggedIn ? <div>Welcome back!</div> : <div>Please login to continue</div>}</div>
+  	  </div>
+  	);
+  }
 }
-
-
-AppRegistry.registerComponent('stats', () => stats);
+export default Stats;

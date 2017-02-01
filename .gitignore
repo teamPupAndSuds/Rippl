@@ -39,3 +39,4 @@ bower_components/
 server/config/twitter.js
 server/config/haven.js
 public/components/utils/Api.jsx
+server/config/auth0config.js
