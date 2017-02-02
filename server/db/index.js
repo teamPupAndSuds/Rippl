@@ -9,7 +9,7 @@ var Session = db.define('Session', {
 });
 
 var User = db.define('User', {
-  username: Sequelize.STRING,
+  username: {type: Sequelize.STRING, unique: true},
   password: Sequelize.STRING,
   requestToken: Sequelize.STRING,
   requestTokenSecret: Sequelize.STRING,

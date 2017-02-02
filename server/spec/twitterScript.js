@@ -48,7 +48,11 @@ var getRyanReynolds = function() {
 };
 
 // Verify current user
-axios.get('http://127.0.0.1:3000/verify')
+
+axios.get('http://127.0.0.1:3000/testuser')
+.then(function() {
+  return axios.get('http://127.0.0.1:3000/verify');
+})
 .then(function() {
   return axios.all([getOprah(), getRealDonaldTrump(), getJkRowling(), getAnnaKendrick(), getRyanReynolds()]);
 })
