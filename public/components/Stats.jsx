@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+class Stats extends React.Component {
+	constructor(props) {
+		super(props)
+	}
 
-
-export default class stats extends Component {
-
+	render() {
+		return (
+			<div></div>
+		)
+	}
 }
 
-
-AppRegistry.registerComponent('stats', () => stats);
+export default Stats;
