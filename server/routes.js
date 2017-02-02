@@ -5,10 +5,26 @@ module.exports = function(app, express) {
   app.get('/verify', controller.getRequestToken);
   app.get('/oauth', controller.getAccessToken);
 
-  app.get('/login', function(req, res) {
+  app.get('/home', function(req, res) {
     console.log('here');
+    req.session.regenerate(function(err) {
+      if (err) {
+        console.log('Session regeneration error');
+      }
+      console.log('Session regenerated');
+    });
     res.status(200).end();
   });
+
+  app.get('/logout', function(req, res) {
+    console.log('Logging out!')
+    req.session.destroy(function(err) {
+      if (err) {
+        console.error('Session destruction error!');
+      }
+      console.log('Session destroyed');
+    })
+  })
 
   // app.post('/analyze', controller);
   // app.put('/analyze', controller);
