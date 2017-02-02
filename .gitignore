@@ -19,6 +19,7 @@ coverage
 .grunt
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
+compiled/
 build/
 dist/
 
@@ -38,3 +39,4 @@ bower_components/
 server/config/twitter.js
 server/config/haven.js
 public/components/utils/Api.jsx
+server/config/auth0config.js
