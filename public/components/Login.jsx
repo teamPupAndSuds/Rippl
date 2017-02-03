@@ -10,6 +10,8 @@ export class Login extends React.Component {
       list: []
     }
     this.getData = this.getData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.queryUser = this.queryUser.bind(this);
   }
 
   static contextTypes = {
@@ -39,6 +41,31 @@ export class Login extends React.Component {
     });
   }
 
+  handleChange(event){
+    this.setState({query: event.target.value});
+    console.log(this.state.query);
+  }
+
+  queryUser(){
+    var that = this;
+    var query = {
+      handle: this.state.query
+    };
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000/analyze',
+      dataType: 'json',
+      data: query,
+      success: function(data){
+        console.log('success! ' + {data});
+      }, 
+      error: function(err){
+        console.log(err);
+        console.log('didnt work');
+      }
+    });
+  }
+
 
   render(){
   	const {auth} = this.props
@@ -49,7 +76,11 @@ export class Login extends React.Component {
   	    <h2>Login</h2>
   	    <button onClick={auth.login.bind(this)}>Login</button>
         <h4>Stats test</h4>
-        <form>Enter twitter username:<br/><input type="text" value={this.state.query} onChange={this.handleChange}/></form>
+        <form>
+          Enter twitter username:<br/>
+          <input type="text" value={this.state.query} onChange={this.handleChange}/>
+        </form>
+        <button onClick={this.queryUser.bind(this)}>Get User Info</button>
         <button onClick={this.getData.bind(this)}>Get Twitter Data</button>
         <Stats data={this.state.list}/>
   	  </div>
