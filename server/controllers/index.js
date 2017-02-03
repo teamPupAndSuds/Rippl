@@ -14,16 +14,18 @@ module.exports = {
     let currentUser = req.params.user || 'RipplMaster';
     getTweetsAsync(twitterHandle)
     .spread((data, response) => {
-      let tweetString = twitterUtil.getTweetString(data);
+      let tweetData = twitterUtil.getTweetString(data);
 
       // Need to look into handling haven asynchronously
-      havenUtil.getSentiment(twitterHandle, tweetString);
+      havenUtil.getSentiment(twitterHandle, tweetData.string);
 
       return User.findOne({username: currentUser})
       .then(function(user) {
         return Score.create({twitterHandle: twitterHandle, 
                               numTweets: data.length, 
-                              tweetText: tweetString, 
+                              tweetText: tweetData.string,
+                              retweetCount: tweetData.retweetCount,
+                              favoriteCount: tweetData.favoriteCount,
                               UserId: user.id});
       })
       

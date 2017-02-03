@@ -85,13 +85,17 @@ module.exports = {
 
   getTweetString: function(tweetJSON) {
     let string = '';
+    let favoriteCount = 0;
+    let retweetCount = 0;
     // Should we be creating an array or concatenating a string?
     tweetJSON.forEach((tweet) => {
       string += tweet.text + ' ';
+      favoriteCount += tweet.favorite_count;
+      retweetCount += tweet.retweet_count;
     });
 
     string = string.replace(/[^\x00-\x7F]/g, '');
 
-    return string;
+    return {string, favoriteCount, retweetCount};
   }
 };
