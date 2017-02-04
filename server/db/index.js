@@ -22,6 +22,8 @@ var Score = db.define('Score', {
   numTweets: Sequelize.INTEGER,
   tweetText: Sequelize.TEXT,
   sentimentScore: Sequelize.FLOAT,
+  retweetCount: Sequelize.INTEGER,
+  favoriteCount: Sequelize.INTEGER  
 });
 
 // puts a UserId column on each Score instance
