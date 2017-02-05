@@ -3,7 +3,7 @@ import { Router } from 'react-router';
 // import AuthService from './utils/AuthService.jsx';
 // import Api from './utils/Api.jsx';
 // import TestPage from './TestPage.jsx';
-// import Stats from './Stats.jsx';
+import Stats from './Stats.jsx';
 
 class App extends React.Component {
   static contextType = {
@@ -23,11 +23,16 @@ class App extends React.Component {
     )
   }
 
+  // render() {
+  //   return (
+  //     <div>
+  //       <Router history={this.props.history} routes={this.props.routes}/>
+  //     </div>
+  //   )
+  // }
   render() {
     return (
-      <div>
-        <Router history={this.props.history} routes={this.props.routes}/>
-      </div>
+      <Stats />
     )
   }
 }
