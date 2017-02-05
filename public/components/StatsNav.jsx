@@ -1,6 +1,6 @@
 import App from './App.jsx';
 import { Navbar, NavItem } from 'react-materialize';
-
+// This is the component that represents the navbar
 class StatsNav extends React.Component{
   constructor(props){
   	super(props);
