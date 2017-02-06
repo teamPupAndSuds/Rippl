@@ -34,19 +34,15 @@ User.hasMany(Score);
 // after creating a new instance of Score
 Score.belongsTo(User);
 
-
-
-
-// User.sync({force: true});
-// Score.sync({force: true});
-// Session.sync({force: true});
-
 User.sync();
 Score.sync();
 Session.sync();
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and Score tables and make new ones.
 
+// User.sync({force: true});
+// Score.sync({force: true});
+// Session.sync({force: true});
 
 module.exports.db = db;
 module.exports.User = User;

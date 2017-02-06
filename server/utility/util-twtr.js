@@ -22,7 +22,7 @@ module.exports = {
   getTweets: function(username, callback) {
     let accessToken = twitter.accessToken;
     let accessTokenSecret = twitter.accessTokenSecret;
-    twtrGetTimelineAsync('user', {'screen_name': username, count: 5}, accessToken, accessTokenSecret)
+    twtrGetTimelineAsync('user', {'screen_name': username, count: 50}, accessToken, accessTokenSecret)
     .spread((data, response) => {
       callback(null, data, response);
     })
