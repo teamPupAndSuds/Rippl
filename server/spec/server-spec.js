@@ -26,6 +26,7 @@ describe('Persistent Node Chat Server', function() {
     // dbConnection.query('truncate sessions', done);
 
     // Verify user and pull access tokens
+    this.timeout(8000);
     axios.get('http://127.0.0.1:3000/testuser')
     .then(function() {
       return axios.get('http://127.0.0.1:3000/verify');
@@ -47,6 +48,8 @@ describe('Persistent Node Chat Server', function() {
   it('Should insert posted scores to the DB', function(done) {
     // Post the user to the chat server.
     var twitterHandleTest = 'AnnaKendrick47'; // Feel free to change this for funsies
+    this.timeout(8000);
+
     request({
       method: 'GET',
       uri: 'http://127.0.0.1:3000/analyze?handle=' + twitterHandleTest,
