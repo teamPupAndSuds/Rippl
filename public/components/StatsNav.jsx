@@ -18,7 +18,7 @@ class StatsNav extends React.Component{
           <img src="../img/rippl-sml.png" className="brand-logo right ripplnav"/>
         </NavItem>
         <NavItem>
-          <Input onChange={this.props.formChange} label="New User" value={this.props.formVal} ><Icon>account_circle</Icon></Input>
+          <Input onChange={this.props.formChange} label="New User" value={this.props.formVal}><Icon>account_circle</Icon></Input>
         </NavItem>
         <NavItem>
           <Button onClick={this.handleClick.bind(this)} waves='light'>Get User</Button>
