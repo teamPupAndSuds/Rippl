@@ -8,20 +8,33 @@ var Score = require('../db/index.js').Score;
 
 module.exports = {
   getSentiment: (twitterHandle, tweets) => {
-    axios.get('https://api.havenondemand.com/1/api/sync/analyzesentiment/v2', {
+    axios.get('https://api.havenondemand.com/1/api/async/analyzesentiment/v2', {
       params: {
         apikey: havenAPIKey['apikey'],
         text: tweets
       }
-    })
-    .then((response) => {
-      Score.update({
-        sentimentScore: response.data.sentiment_analysis[0].aggregate.score
-      }, {
-        where: {
-          twitterHandle: twitterHandle,
-          tweetText: tweets
+    }).then((response) => {
+      // console.log('data.jobID===>', response.data.jobID);
+      var jobID = response.data.jobID;
+      var url = 'https://api.havenondemand.com/1/job/result/';
+      url += jobID;
+      axios.get(url, {
+        params: {
+          apikey: havenAPIKey['apikey']
         }
+      })
+      .then((response) => {
+        console.log('response ===>', response.data.actions[0].result);
+        Score.update({
+          sentimentScore: response.data.actions[0].result.sentiment_analysis[0].aggregate.score
+        }, {
+          where: {
+            twitterHandle: twitterHandle,
+            tweetText: tweets
+          }
+        });
+      }).catch((error) => {
+        console.log('async result error');
       });
     })
     .catch((error) => {
