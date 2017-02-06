@@ -1,4 +1,5 @@
 import App from './App.jsx';
+import StatsBox from './StatsBox.jsx'
 import { Col, Card } from 'react-materialize';
 
 
@@ -11,8 +12,8 @@ class StatsCard extends React.Component{
   render(){
   	return (
       <Col m={6} s={12}>
-    		<Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[<a href='#'>This is a link</a>]}>
-    			I am a very simple card.
+    		<Card className='blue-grey darken-1 white-text' textClassName='white-text' title={this.props.user.twitterHandle} actions={[<a href={'http://twitter.com/' + this.props.user.twitterHandle}>To Twitter</a>]}>
+    			<StatsBox score={this.props.user.sentimentScore}/>
     		</Card>
 			</Col>
   	);
