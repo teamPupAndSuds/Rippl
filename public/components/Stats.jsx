@@ -42,6 +42,9 @@ class Stats extends React.Component{
     });
   }
 
+  componentWillMount(){
+    this.getData();
+  }
 
   // Handles changes in the input tag
   handleChange(event){
