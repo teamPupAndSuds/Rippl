@@ -2,14 +2,17 @@ import App from './App.jsx';
 import StatsNav from './StatsNav.jsx';
 import StatsBody from './StatsBody.jsx';
 import StatsFoot from './StatsFoot.jsx';
+import StatSpinner from './StatSpinner.jsx'
 class Stats extends React.Component{
   constructor(props){
   	super(props);
 
     this.state = {
       query: '',
-      list: []
+      list: [],
+      spinner: false
     }
+
 
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +28,7 @@ class Stats extends React.Component{
       dataType: 'json',
       success: function(data){
         console.log('success! ' + {data});
-        that.setState({list: data});
+        that.setState({list: data, spinner: false});
       }, 
       error: function(err){
         console.log(err);
@@ -39,6 +42,7 @@ class Stats extends React.Component{
   }
 
   queryUser(){
+    this.setState({spinner: true});
     console.log('querying USER')
     var that = this;
     var query = {
@@ -64,7 +68,7 @@ class Stats extends React.Component{
     render() {
       return(
         <div>
-          <StatsNav formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
+          <StatsNav spinner={this.state.spinner} formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
           <StatsBody list={this.state.list}/>
           <StatsFoot />
         </div>

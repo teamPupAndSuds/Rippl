@@ -21,3 +21,10 @@ body {
 .card-title.grey-text.text-darken-4 {
   color: #ffab40 !important
 }
+
+.spinner {
+	position: relative;
+	float: right;
+	top: 1.15vh;
+	left: 1vw;
+}
