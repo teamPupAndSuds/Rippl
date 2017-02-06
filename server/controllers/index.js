@@ -6,6 +6,7 @@ var Score = require('../db/index.js').Score;
 var {User} = require('../db/index.js');
 
 var getTweetsAsync = Promise.promisify(twitterUtil.getTweets, {context: twitterUtil, multiArgs: true});
+var getSentimentAsync = Promise.promisify(havenUtil.getSentiment, {context: havenUtil});
 
 module.exports = {
   getAnalysis: function(req, res, next) {
@@ -17,23 +18,25 @@ module.exports = {
       let tweetData = twitterUtil.getTweetString(data);
 
       // Need to look into handling haven asynchronously
-      havenUtil.getSentiment(twitterHandle, tweetData.string);
-
-      return User.findOne({username: currentUser})
-      .then(function(user) {
-        return Score.create({twitterHandle: twitterHandle, 
-          numTweets: data.length, 
-          tweetText: tweetData.string,
-          retweetCount: tweetData.retweetCount,
-          favoriteCount: tweetData.favoriteCount,
-          UserId: user.id});
+      return getSentimentAsync(twitterHandle, tweetData.string)
+      .then((sentiment) => {
+        console.log('response ==>', sentiment);
+        return User.findOne({username: currentUser})
+        .then(function(user) {
+          return Score.create({twitterHandle: twitterHandle,
+            numTweets: data.length,
+            tweetText: tweetData.string,
+            sentimentScore: sentiment,
+            retweetCount: tweetData.retweetCount,
+            favoriteCount: tweetData.favoriteCount,
+            UserId: user.id});
+        });
       });
-      
     })
     .then((newScore) => {
       // console.log(newScore);
       console.log('New score created!');
-      res.status(200).json(newScore);
+      res.status(200).json('newScore');
     })
     .catch((err) => {
       console.error('Analysis error ', err);
