@@ -33,8 +33,8 @@ class Stats extends React.Component{
       dataType: 'json',
       success: function(data){
         console.log('success! ' + {data});
-        that.setState({list: data, spinner: false});
-      }, 
+        that.setState({list: data.reverse(), spinner: false});
+      },
       error: function(err){
         console.log(err);
         console.log('didnt work');
@@ -67,7 +67,7 @@ class Stats extends React.Component{
       success: function(data){
         that.getData();
         console.log('success! ' + {data});
-      }, 
+      },
       error: function(err){
         console.log(err);
         console.log('didnt work');
