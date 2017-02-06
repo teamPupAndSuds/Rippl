@@ -21,6 +21,6 @@ to load up all of your react files.
 
 Finally, run 
 ```javascrit
-npm run twitterscript.
+npm run twitterscript
 ```
 Once all these commands have been ran, navigate to localhost:3000 to use the app.  From here, you are able to get a Rippl score for any twitter user.
