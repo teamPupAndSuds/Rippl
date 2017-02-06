@@ -24,6 +24,7 @@ coverage
 compiled/
 build/
 dist/
+public/bundle.js
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
