@@ -7,7 +7,7 @@ var axios = require('axios');
 var Score = require('../db/index.js').Score;
 
 module.exports = {
-  getSentiment: (twitterHandle, tweets) => {
+  getSentiment: (twitterHandle, tweets, callback) => {
     axios.get('https://api.havenondemand.com/1/api/async/analyzesentiment/v2', {
       params: {
         apikey: havenAPIKey['apikey'],
@@ -24,17 +24,19 @@ module.exports = {
         }
       })
       .then((response) => {
-        console.log('response ===>', response.data.actions[0].result);
-        Score.update({
-          sentimentScore: response.data.actions[0].result.sentiment_analysis[0].aggregate.score
-        }, {
-          where: {
-            twitterHandle: twitterHandle,
-            tweetText: tweets
-          }
-        });
+        // console.log('response ===>', response.data.actions[0].result);
+        callback(null, response.data.actions[0].result.sentiment_analysis[0].aggregate.score);
+        // Score.update({
+        //   sentimentScore: response.data.actions[0].result.sentiment_analysis[0].aggregate.score
+        // }, {
+        //   where: {
+        //     twitterHandle: twitterHandle,
+        //     tweetText: tweets
+        //   }
+        // });
       }).catch((error) => {
         console.log('async result error');
+        callback(error, null);
       });
     })
     .catch((error) => {
