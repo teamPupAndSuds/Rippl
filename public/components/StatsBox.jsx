@@ -10,7 +10,6 @@ class StatsCard extends React.Component{
   }
 
   render(){
-    console.log(this.props.color);
   	return (
       <div className="statsbox">
         <Row>
