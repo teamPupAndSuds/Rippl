@@ -2,7 +2,7 @@ var twitterUtil = require('../utility/util-twtr.js');
 var havenUtil = require('../utility/util-haven.js');
 var Promise = require('bluebird');
 
-var Score = require('../db/index.js').Score;
+var {Score} = require('../db/index.js');
 var {User} = require('../db/index.js');
 
 var getTweetsAsync = Promise.promisify(twitterUtil.getTweets, {context: twitterUtil, multiArgs: true});
@@ -11,36 +11,41 @@ var getSentimentAsync = Promise.promisify(havenUtil.getSentiment, {context: have
 module.exports = {
   getAnalysis: function(req, res, next) {
     // Using hardcoded twitter handle for testing purposes, default currently pulls 5 most recent tweets
-    let twitterHandle = req.query.handle || 'TweetsByTutt';
-    let currentUser = req.params.user || 'RipplMaster';
+    var twitterHandle = req.query.handle || 'TweetsByTutt';
+    var currentUser = req.params.user || 'RipplMaster';
+    var globaldata, globaltweetData, globalsentiment, globaluser;
+    
     getTweetsAsync(twitterHandle)
     .spread((data, response) => {
-      let tweetData = twitterUtil.getTweetString(data);
+      globaldata = data;
+      globaltweetData = twitterUtil.getTweetString(globaldata);
 
       // Need to look into handling haven asynchronously
-      return getSentimentAsync(twitterHandle, tweetData.string)
-      .then((sentiment) => {
-        console.log('response ==>', sentiment);
-        return User.findOne({username: currentUser})
-        .then(function(user) {
-          return Score.create({twitterHandle: twitterHandle,
-            numTweets: data.length,
-            tweetText: tweetData.string,
-            sentimentScore: sentiment,
-            retweetCount: tweetData.retweetCount,
-            favoriteCount: tweetData.favoriteCount,
-            UserId: user.id});
-        });
-      });
+      return getSentimentAsync(twitterHandle, globaltweetData.string);
+    })
+    .then((sentiment) => {
+      globalsentiment = sentiment;
+      console.log('response ==>', sentiment);
+      return User.findOne({username: currentUser});
+    })
+    .then(function(user) {
+      console.log('CREATING SCORE');
+      return Score.create({twitterHandle: twitterHandle,
+        numTweets: globaldata.length,
+        tweetText: globaltweetData.string,
+        sentimentScore: globalsentiment,
+        retweetCount: globaltweetData.retweetCount,
+        favoriteCount: globaltweetData.favoriteCount})
+        .then((newScore) => newScore.setUser(user.id)
+        .then((newScore) => newScore));
     })
     .then((newScore) => {
-      // console.log(newScore);
       console.log('New score created!');
-      res.status(200).json('newScore');
+      return res.status(200).json(newScore);
     })
     .catch((err) => {
       console.error('Analysis error ', err);
-      res.status(404).end();
+      return res.status(404).end();
     });
   },
 
