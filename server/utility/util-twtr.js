@@ -22,7 +22,7 @@ module.exports = {
   getTweets: function(username, callback) {
     let accessToken = twitter.accessToken;
     let accessTokenSecret = twitter.accessTokenSecret;
-    twtrGetTimelineAsync('user', {'screen_name': username, count: 100}, accessToken, accessTokenSecret)
+    twtrGetTimelineAsync('user', {'screen_name': username, count: 50}, accessToken, accessTokenSecret)
     .spread((data, response) => {
       callback(null, data, response);
     })
@@ -69,6 +69,7 @@ module.exports = {
         // Would save these to session in future scenarios if possible
       twitter['accessToken'] = accessToken;
       twitter['accessTokenSecret'] = accessTokenSecret;
+      twitter['results'] = results;
       // Verify twitter credentials have been accepted
       return twtrVerifyCredentialsAsync(accessToken, accessTokenSecret, results);
     })
@@ -97,5 +98,7 @@ module.exports = {
     string = string.replace(/[^\x00-\x7F]/g, '');
 
     return {string, favoriteCount, retweetCount};
-  }
+  },
+
+  twitter: twitter
 };

@@ -26,21 +26,25 @@ var Score = db.define('Score', {
   favoriteCount: Sequelize.INTEGER  
 });
 
+// enables bi-directional associations between Users and Scores
+User.hasMany(Score);
+
 // puts a UserId column on each Score instance
 // also gives us the `.setUser` method available
 // after creating a new instance of Score
 Score.belongsTo(User);
 
-// enables bi-directional associations between Users and Scores
-User.hasMany(Score);
-
-
-User.sync({force: true});
-Score.sync({force: true});
-Session.sync({force: true});
+User.sync();
+Score.sync();
+Session.sync();
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and Score tables and make new ones.
+
+// User.sync({force: true});
+// Score.sync({force: true});
+// Session.sync({force: true});
 
 module.exports.db = db;
 module.exports.User = User;
 module.exports.Score = Score;
+module.exports.Session = Session;

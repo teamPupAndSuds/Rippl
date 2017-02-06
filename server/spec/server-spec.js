@@ -5,6 +5,11 @@ var mysql = require('mysql');
 var request = require('request'); // You might need to npm install the request module!
 var expect = require('chai').expect;
 var axios = require('axios');
+var {twitter} = require('../utility/util-twtr.js');
+var Promise = require('bluebird');
+
+
+var twtrVerifyCredentialsAsync = Promise.promisify(twitter.verifyCredentials, {context: twitter, multiArgs: true});
 
 describe('Persistent Node Chat Server', function() {
   var dbConnection;
@@ -45,6 +50,19 @@ describe('Persistent Node Chat Server', function() {
     dbConnection.end();
   });
 
+  it('Should verify a user', function(done) {
+    // Post the user to the chat server.
+    var accessToken = twitter.accessToken;
+    var accessTokenSecret = twitter.accessTokenSecret;
+    var results = twitter.results;
+    
+    twtrVerifyCredentialsAsync(accessToken, accessTokenSecret, results)
+    .spread(function(data, response) {
+      expect(data).to.not.equal(undefined);
+      done();
+    });
+  });
+
   it('Should insert posted scores to the DB', function(done) {
     // Post the user to the chat server.
     var twitterHandleTest = 'AnnaKendrick47'; // Feel free to change this for funsies
@@ -68,8 +86,8 @@ describe('Persistent Node Chat Server', function() {
         var queryArgs = [];
 
         dbConnection.query(queryString, queryArgs, function(err, results) {
-          // Should have one result:
-          expect(results.length).to.equal(1);
+          // Should have more than one result:
+          expect(results.length).to.not.equal(0);
 
           // TODO: If you don't have a column named text, change this test.
           expect(results[0].twitterHandle).to.equal(twitterHandleTest);
