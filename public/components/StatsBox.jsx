@@ -13,7 +13,7 @@ class StatsCard extends React.Component{
       <div className="statsbox">
         <Row>
           <Col s={3} m={3} l={3}>
-            SCORE: {this.props.score}
+            SCORE: {this.props.score ? Math.floor(this.props.score * 1000) : 'calculating...'}
           </Col>
           <Col s={1} m={1} l={1}>
             

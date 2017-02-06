@@ -11,6 +11,7 @@ class Stats extends React.Component{
       list: []
     }
 
+
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.queryUser = this.queryUser.bind(this);
