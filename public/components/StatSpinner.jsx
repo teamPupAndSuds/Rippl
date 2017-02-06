@@ -1,7 +1,7 @@
 import App from './App.jsx';
 import { Preloader, Col } from 'react-materialize';
 
-// This is the component that represents the main body of the page
+// This is the component that represents the spinner animation
 class StatSpinner extends React.Component{
   constructor(props){
   	super(props);

@@ -3,6 +3,8 @@ import StatsNav from './StatsNav.jsx';
 import StatsBody from './StatsBody.jsx';
 import StatsFoot from './StatsFoot.jsx';
 import StatSpinner from './StatSpinner.jsx'
+
+// This is the component that represents the main body of the page
 class Stats extends React.Component{
   constructor(props){
   	super(props);
@@ -19,6 +21,9 @@ class Stats extends React.Component{
     this.queryUser = this.queryUser.bind(this);
   }
 
+
+  // This function gets all the user data for user RipplMaster (default user)
+  // then stops the spinner animation
   getData(){
     console.log('getting DATA');
     var that = this;
@@ -37,10 +42,15 @@ class Stats extends React.Component{
     });
   }
 
+
+  // Handles changes in the input tag
   handleChange(event){
     this.setState({query: event.target.value});
   }
 
+
+  // This function gets tells the server to get the data for the a specified user
+  // and starts the spinner animation
   queryUser(){
     this.setState({spinner: true});
     console.log('querying USER')

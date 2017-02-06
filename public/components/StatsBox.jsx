@@ -3,7 +3,7 @@ import StatSpinner from './StatSpinner.jsx'
 import { Col, Row, Card, CardPanel } from 'react-materialize';
 
 
-// This is the component that represents the cards holding data on each user
+// This is the component that represents the box that displays the data
 class StatsCard extends React.Component{
   constructor(props){
   	super(props);
@@ -15,9 +15,6 @@ class StatsCard extends React.Component{
         <Row>
           <Col s={3} m={3} l={3}>
             SCORE: {this.props.score ? Math.floor(this.props.score * 1000) : 'Calculating...'}
-          </Col>
-          <Col s={1} m={1} l={1}>
-            
           </Col>
         </Row>
       </div>
