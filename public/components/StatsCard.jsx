@@ -13,9 +13,9 @@ class StatsCard extends React.Component{
   getScoreColor(){
     let score = this.props.user.sentimentScore;
     console.log('this is the score ' +  score * 1000);
-    if(score * 1000 >= 700){
+    if(score * 1000 >= 600){
       return '#8bc34a';
-    } else if(score < 700 && score > 0) {
+    } else if(score < 600 && score > 0) {
       return 'yellow';
     } else{
       return '#ef5350';
