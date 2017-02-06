@@ -25,6 +25,6 @@ body {
 .spinner {
 	position: relative;
 	float: right;
-	left: 3.312vw;
 	top: 1.15vh;
+	left: 1vw;
 }

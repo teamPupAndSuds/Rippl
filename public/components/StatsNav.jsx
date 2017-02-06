@@ -19,9 +19,7 @@ class StatsNav extends React.Component{
         <NavItem href='/'>
           <img src="../img/rippl-sml.png" className="brand-logo right ripplnav"/>
         </NavItem>
-        <NavItem>
-          <StatSpinner />
-        </NavItem>
+        {this.props.spinner ? <NavItem><StatSpinner /></NavItem> : ''}
         <NavItem>
           <Input onChange={this.props.formChange} label="New User" value={this.props.formVal}><Icon>account_circle</Icon></Input>
         </NavItem>
