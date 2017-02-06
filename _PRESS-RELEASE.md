@@ -33,7 +33,13 @@ Once the project moves into development, the press release can be used as a touc
   > "Rippl will change the way users and business market themselves." - Joey Laguna - Product Owner
 
 ## How to Get Started ##
-  > TODO
+  >To get started, you will need some API keys to make everything work.  Please get API keys for the following:
+  	https://dev.twitter.com/
+  	https://www.havenondemand.com/
+  	Once you have API keys, please remove the .example from haven.example.js and twitter.example.js and add your API keys into these files.
+  	Once you have those two files setup, run npm install to get all the required packages.
+  	Then run npm start server to start up your local express server.  From there, run npm run dev-react to load up all of your react files.  Finally, run npm run twitterscript.
+  	Once all these commands have been ran, navigate to localhost:3000 to use the app.  From here, you are able to get a Rippl score for any twitter user.
 
 ## Customer Quote ##
   > TODO
