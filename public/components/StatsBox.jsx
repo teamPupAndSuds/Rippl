@@ -10,11 +10,12 @@ class StatsCard extends React.Component{
   }
 
   render(){
+    console.log(this.props.color);
   	return (
       <div className="statsbox">
         <Row>
           <Col s={3} m={3} l={3}>
-            SCORE: {this.props.score ? Math.floor(this.props.score * 1000) : 'Calculating...'}
+            <p id="scoreColor" style={{color:this.props.color}}>Rippl Score: {this.props.score ? Math.floor(this.props.score * 1000) : 'Calculating...'}</p>
           </Col>
         </Row>
       </div>
