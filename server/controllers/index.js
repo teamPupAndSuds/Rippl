@@ -22,18 +22,18 @@ module.exports = {
       return User.findOne({username: currentUser})
       .then(function(user) {
         return Score.create({twitterHandle: twitterHandle, 
-                              numTweets: data.length, 
-                              tweetText: tweetData.string,
-                              retweetCount: tweetData.retweetCount,
-                              favoriteCount: tweetData.favoriteCount,
-                              UserId: user.id});
-      })
+          numTweets: data.length, 
+          tweetText: tweetData.string,
+          retweetCount: tweetData.retweetCount,
+          favoriteCount: tweetData.favoriteCount,
+          UserId: user.id});
+      });
       
     })
     .then((newScore) => {
       // console.log(newScore);
       console.log('New score created!');
-      res.status(200).end();
+      res.status(200).json(newScore);
     })
     .catch((err) => {
       console.error('Analysis error ', err);
