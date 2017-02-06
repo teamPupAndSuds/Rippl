@@ -1,19 +1,9 @@
-// import App from './App.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('app')
-// );
+import Stats from './Stats.jsx';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-import App from './App.jsx'
-import {browserHistory} from 'react-router'
-import makeRoutes from './utils/routes.jsx'
-
-const routes = makeRoutes();
 ReactDOM.render(
-  <App history={browserHistory} routes={routes}/>,
+  <Stats />,
   document.getElementById('app')
 );

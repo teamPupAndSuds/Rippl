@@ -1,4 +1,3 @@
-import App from './App.jsx';
 import StatSpinner from './StatSpinner.jsx'
 import { Navbar, NavItem, Row, Input, Icon, Button } from 'react-materialize';
 

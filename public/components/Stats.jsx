@@ -1,4 +1,3 @@
-import App from './App.jsx';
 import StatsNav from './StatsNav.jsx';
 import StatsBody from './StatsBody.jsx';
 import StatsFoot from './StatsFoot.jsx';
@@ -22,8 +21,8 @@ class Stats extends React.Component{
   }
 
 
-  // This function gets all the user data for user RipplMaster (default user)
-  // then stops the spinner animation
+  // This function gets all the user data for user RipplMaster (default user),
+  // stops the spinner animation, and if there is an error displays an error message.
   getData() {
     console.log('getting DATA');
     var that = this;
@@ -43,6 +42,8 @@ class Stats extends React.Component{
     });
   }
 
+
+  // Gets the data on mounting
   componentWillMount(){
     this.getData();
   }
@@ -53,8 +54,8 @@ class Stats extends React.Component{
   }
 
 
-  // This function gets tells the server to get the data for the a specified user
-  // and starts the spinner animation
+  // This function gets tells the server to get the data for the a specified user,
+  // starts the spinner animation, and if there is an error displays an error message.
   queryUser() {
     this.setState({spinner: true, error: false});
     console.log('querying USER')

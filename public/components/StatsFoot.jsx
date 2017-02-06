@@ -1,4 +1,3 @@
-import App from './App.jsx';
 import { Footer } from 'react-materialize';
 
 // This component represents the footer of the page
