@@ -1,6 +1,7 @@
 import App from './App.jsx';
 import { Footer } from 'react-materialize';
 
+// This component represents the footer of the page
 class StatsFoot extends React.Component{
   constructor(props){
   	super(props);
