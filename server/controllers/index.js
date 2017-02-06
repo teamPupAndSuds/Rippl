@@ -60,7 +60,7 @@ module.exports = {
     User.find({where: { username: username }})
     .then(function(user) {
       console.log('USER :', user);
-      return Score.findAll({UserId: user.id})
+      return Score.findAll({UserId: user.id});
     })
     .then(function(scores) {
       res.status(200).json(scores);
@@ -68,7 +68,7 @@ module.exports = {
     .catch(function(err) {
       console.error('Error fetching user scores', err);
       res.status(404).end();
-    })
+    });
   },
 
   createTestUser: function(req, res, next) {
@@ -80,7 +80,7 @@ module.exports = {
     .catch((err) => {
       console.log('RipplMaster creation error');
       res.status(404).end();
-    })
+    });
   }
 
 };
