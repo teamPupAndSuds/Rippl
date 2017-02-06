@@ -6,16 +6,12 @@ import { Navbar, NavItem } from 'react-materialize';
 class StatsBody extends React.Component{
   constructor(props){
   	super(props);
-
-  	this.state = {
-  		cards: []
-  	}
   }
 
   render(){
   	return (
-      <div>
-      	<StatsCard />
+      <div className="statsbody">
+      {this.props.list.map((user) => <StatsCard user={user}/>) }
       </div>
   	);
   }

@@ -5,26 +5,67 @@ import StatsFoot from './StatsFoot.jsx';
 class Stats extends React.Component{
   constructor(props){
   	super(props);
+
+    this.state = {
+      query: '',
+      list: []
+    }
+
+    this.getData = this.getData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.queryUser = this.queryUser.bind(this);
   }
 
-  // render(){
-  // 	console.log('INSIDE STATS ' + this.props.data.length);
-  //   this.props.data.forEach(function(value){
-  //     console.log(JSON.stringify(value));
-  //   });
-  // 	return(
-  // 	  <div>
-  // 	  	<h1>Stats</h1>
-  //       {this.props.data.map((value, index) => <p>{value.twitterHandle} score: {value.sentimentScore}</p>)}
-  // 	  </div>
-  // 	);
-  // }
+  getData(){
+    console.log('getting DATA');
+    var that = this;
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000/rippl/user/RipplMaster',
+      dataType: 'json',
+      success: function(data){
+        console.log('success! ' + {data});
+        that.setState({list: data});
+      }, 
+      error: function(err){
+        console.log(err);
+        console.log('didnt work');
+      }
+    });
+  }
+
+  handleChange(event){
+    this.setState({query: event.target.value});
+  }
+
+  queryUser(){
+    console.log('querying USER')
+    var that = this;
+    var query = {
+      handle: this.state.query
+    };
+    this.setState({query: ''});
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000/analyze',
+      dataType: 'json',
+      data: query,
+      success: function(data){
+        that.getData();
+        console.log('success! ' + {data});
+      }, 
+      error: function(err){
+        console.log(err);
+        console.log('didnt work');
+      }
+    });
+  }
 
     render() {
       return(
         <div>
-          <StatsNav />
-          <StatsBody />
+          <StatsNav formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
+          <StatsBody list={this.state.list}/>
           <StatsFoot />
         </div>
       );

@@ -1,5 +1,23 @@
+body {
+	overflow: hidden;
+}
 .ripplnav {
 	height: 40px;
 	top: 1rem;
 	left: 1rem;
+}
+
+.statsbox {
+	height: 20px;
+	font-size: 30px;
+}
+
+.statsbody {
+	padding-left: 0.8rem;
+	height: 86vh;
+	overflow: scroll;
+}
+
+.card-title.grey-text.text-darken-4 {
+  color: #ffab40 !important
 }
