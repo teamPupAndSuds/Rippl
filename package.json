@@ -4,7 +4,7 @@
   "description": "Sentiment analysis scoring application",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha --bail server/spec/server-spec.js; RES=$?; kill %1; exit $RES",
     "server": "nodemon server/app.js",
     "database": "mysql.server start",
     "login": "mysql -u root -p",
@@ -58,7 +58,9 @@
   "devDependencies": {
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
+    "chai": "^3.5.0",
     "jest": "18.1.0",
+    "mocha": "^3.2.0",
     "react-test-renderer": "~15.4.0-rc.4"
   },
   "jest": {

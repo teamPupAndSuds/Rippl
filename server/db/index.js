@@ -35,9 +35,9 @@ Score.belongsTo(User);
 User.hasMany(Score);
 
 
-User.sync();
-Score.sync();
-Session.sync();
+User.sync({force: true});
+Score.sync({force: true});
+Session.sync({force: true});
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and Score tables and make new ones.
 

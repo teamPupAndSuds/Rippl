@@ -15,12 +15,12 @@ module.exports = function(app, express) {
         res.status(404).end();
       }
       console.log('Session regenerated');
-    res.status(200).end();
+      res.status(200).end();
     });
   });
 
   app.get('/logout', function(req, res) {
-    console.log('Logging out!')
+    console.log('Logging out!');
     req.session.destroy(function(err) {
       if (err) {
         console.error('Session destruction error!');
@@ -28,8 +28,8 @@ module.exports = function(app, express) {
       }
       console.log('Session destroyed');
       res.status(200).end();
-    })
-  })
+    });
+  });
 
   // app.post('/analyze', controller);
   // app.put('/analyze', controller);
