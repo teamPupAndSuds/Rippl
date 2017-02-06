@@ -2,13 +2,15 @@ import App from './App.jsx';
 import StatsNav from './StatsNav.jsx';
 import StatsBody from './StatsBody.jsx';
 import StatsFoot from './StatsFoot.jsx';
+import StatSpinner from './StatSpinner.jsx'
 class Stats extends React.Component{
   constructor(props){
   	super(props);
 
     this.state = {
       query: '',
-      list: []
+      list: [],
+      spinner: false
     }
 
 
@@ -65,6 +67,7 @@ class Stats extends React.Component{
     render() {
       return(
         <div>
+          {this.state.spinner ? <StatSpinner /> : ''}
           <StatsNav formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
           <StatsBody list={this.state.list}/>
           <StatsFoot />

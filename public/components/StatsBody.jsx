@@ -11,7 +11,7 @@ class StatsBody extends React.Component{
   render(){
   	return (
       <div className="statsbody">
-      {this.props.list.reverse().map((user) => <StatsCard user={user}/>) }
+      	{this.props.list.reverse().map((user) => <StatsCard user={user}/>) }
       </div>
   	);
   }
