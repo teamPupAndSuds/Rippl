@@ -24,18 +24,19 @@ class Stats extends React.Component{
 
   // This function gets all the user data for user RipplMaster (default user)
   // then stops the spinner animation
-  getData(){
+  getData() {
     console.log('getting DATA');
     var that = this;
     $.ajax({
       method: 'GET',
       url: 'http://localhost:3000/rippl/user/RipplMaster',
       dataType: 'json',
-      success: function(data){
+      success: function(data) {
         console.log('success! ' + {data});
-        that.setState({list: data.reverse(), spinner: false});
+        that.setState({list: data.reverse(), spinner: false, error: false});
       },
-      error: function(err){
+      error: function(err){ 
+        that.setState({spinner: false, error: true});
         console.log(err);
         console.log('didnt work');
       }
@@ -47,15 +48,15 @@ class Stats extends React.Component{
   }
 
   // Handles changes in the input tag
-  handleChange(event){
+  handleChange(event) {
     this.setState({query: event.target.value});
   }
 
 
   // This function gets tells the server to get the data for the a specified user
   // and starts the spinner animation
-  queryUser(){
-    this.setState({spinner: true});
+  queryUser() {
+    this.setState({spinner: true, error: false});
     console.log('querying USER')
     var that = this;
     var query = {
@@ -72,6 +73,7 @@ class Stats extends React.Component{
         console.log('success! ' + {data});
       },
       error: function(err){
+        that.setState({spinner: false, error: true});
         console.log(err);
         console.log('didnt work');
       }
@@ -81,7 +83,7 @@ class Stats extends React.Component{
     render() {
       return(
         <div>
-          <StatsNav spinner={this.state.spinner} formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
+          <StatsNav error={this.state.error} spinner={this.state.spinner} formVal={this.state.query} getUserClick={this.queryUser} formChange={this.handleChange}/>
           <StatsBody list={this.state.list}/>
           <StatsFoot />
         </div>

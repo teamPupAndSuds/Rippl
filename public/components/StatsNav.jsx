@@ -21,6 +21,7 @@ class StatsNav extends React.Component{
           <img src="../img/rippl-sml.png" className="brand-logo right ripplnav"/>
         </NavItem>
           {this.props.spinner ? <NavItem><StatSpinner /></NavItem> : ''}
+          {this.props.error ? <NavItem>Invalid Twitter Handle</NavItem> : ''}
         <NavItem>
           <Input onChange={this.props.formChange} label="New User" value={this.props.formVal}><Icon>account_circle</Icon></Input>
         </NavItem>
