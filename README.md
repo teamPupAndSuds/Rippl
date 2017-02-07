@@ -1,5 +1,5 @@
 # Rippl
-![Alt text](/public/img/examplescreen?raw=true)
+![Alt text](public/img/examplescreen?raw=true)
 ### getting started
 To get started, you will need some API keys to make everything work.  Please get API keys for the following:
 
