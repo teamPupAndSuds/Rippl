@@ -44,7 +44,14 @@ Session.sync();
 // Score.sync({force: true});
 // Session.sync({force: true});
 
-module.exports.db = db;
-module.exports.User = User;
-module.exports.Score = Score;
-module.exports.Session = Session;
+// module.exports.db = db;
+// module.exports.User = User;
+// module.exports.Score = Score;
+// module.exports.Session = Session;
+
+module.exports = {
+  db: db,
+  User: User,
+  Score: Score,
+  Session: Session
+};

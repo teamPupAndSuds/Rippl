@@ -62,12 +62,9 @@ module.exports = {
   },
 
   getUserScores: function(req, res, next) {
-    console.log('Username param: ' + req.params.username);
     let username = req.params.username || 'RipplMaster';
-    console.log(username);
     User.find({where: { username: username }})
     .then(function(user) {
-      console.log('USER :', user);
       return Score.findAll({UserId: user.id});
     })
     .then(function(scores) {
