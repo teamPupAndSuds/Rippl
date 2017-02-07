@@ -1,4 +1,5 @@
-# teamPupAndSuds
+# Rippl
+![Alt text](public/img/examplescreen.png)
 ### getting started
 To get started, you will need some API keys to make everything work.  Please get API keys for the following:
 
