@@ -1,4 +1,3 @@
-import App from './App.jsx';
 import StatsCard from './StatsCard.jsx';
 import { Navbar, NavItem } from 'react-materialize';
 

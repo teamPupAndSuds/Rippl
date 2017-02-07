@@ -1,4 +1,3 @@
-import App from './App.jsx';
 import StatsBox from './StatsBox.jsx'
 import { Col, Card } from 'react-materialize';
 
